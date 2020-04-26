@@ -1,6 +1,6 @@
 # Book-Store
 
-#####Bookstore Web Application - Using Scala
+####Bookstore Web Application - Using Scala
 
 ### Requirements
 Scala 2.11 
