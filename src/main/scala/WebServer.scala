@@ -2,9 +2,7 @@ import com.sun.net.httpserver._
 import java.net._
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadPoolExecutor
-
 import scala.io.Source
-
 import spray.json._
 
 object WebServer extends App {
@@ -53,6 +51,7 @@ object WebServer extends App {
 
     def handlePostRequest(exchange: HttpExchange): String ={
 
+      //Add book
       if(exchange.getRequestURI.toString.contains("/books/book")){
         val str = Source.fromInputStream(exchange.getRequestBody).mkString.parseJson.asJsObject.getFields("isbn", "title", "author")
         str match{
@@ -68,7 +67,7 @@ object WebServer extends App {
     def handleResponse(exchange: HttpExchange, requestParamValue: String): Unit = {
       val outputStream = exchange.getResponseBody
 
-      // this line is a must
+
       exchange.sendResponseHeaders(200, 0)
       outputStream.write(requestParamValue.getBytes())
       outputStream.flush()
