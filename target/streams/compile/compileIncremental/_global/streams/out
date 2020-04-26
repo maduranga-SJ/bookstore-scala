@@ -1,0 +1,34 @@
+[debug] 
+[debug] Initial source changes: 
+[debug] 	removed:Set()
+[debug] 	added: Set()
+[debug] 	modified: Set(C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\src\main\scala\WebServer.scala)
+[debug] Invalidated products: Set()
+[debug] External API changes: API Changes: Set()
+[debug] Modified binary dependencies: Set()
+[debug] Initial directly invalidated classes: Set(WebServer)
+[debug] 
+[debug] Sources indirectly invalidated by:
+[debug] 	product: Set()
+[debug] 	binary dep: Set()
+[debug] 	external source: Set()
+[debug] All initially invalidated classes: Set(WebServer)
+[debug] All initially invalidated sources:Set(C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\src\main\scala\WebServer.scala)
+[debug] Initial set of included nodes: WebServer
+[info] Compiling 1 Scala source to C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes ...
+[debug] Getting org.scala-sbt:compiler-bridge_2.11:1.3.5:compile for Scala 2.11.0
+[debug] Getting org.scala-sbt:compiler-bridge_2.11:1.3.5:compile for Scala 2.11.0
+[debug] [zinc] Running cached compiler 26ffe6bd for Scala compiler version 2.11.0
+[debug] [zinc] The Scala compiler is invoked with:
+[debug] 	-bootclasspath
+[debug] 	C:\Program Files\Java\jdk1.8.0_251\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_251\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_251\jre\classes;C:\Users\Maduranga.J\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.11.0\scala-library-2.11.0.jar
+[debug] 	-classpath
+[debug] 	C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes;C:\Users\Maduranga.J\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\io\spray\spray-json_2.11\1.3.5\spray-json_2.11-1.3.5.jar
+[debug] Scala compilation took 5.4471967 s
+[info] Done compiling.
+[debug] New invalidations:
+[debug] 	Set()
+[debug] Initial set of included nodes: 
+[debug] Previously invalidated, but (transitively) depend on new invalidations:
+[debug] 	Set()
+[debug] No classes were invalidated.
