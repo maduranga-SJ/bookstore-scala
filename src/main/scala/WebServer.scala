@@ -2,7 +2,9 @@ import com.sun.net.httpserver._
 import java.net._
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadPoolExecutor
+
 import scala.io.Source
+
 import spray.json._
 
 object WebServer extends App {
@@ -31,35 +33,41 @@ object WebServer extends App {
       // Get Book By ISBN
       if (rest_path.contains("/books/book/")){
         val isbn = rest_path.split("book/")(1)
-        val book = Library.getBook(isbn).getOrElse("No Book Found").toString
-        return book
+        val book = Library.getBook(isbn).getOrElse("""{"message":"No Book Found"}""").toString
+        return s""" {${book.toString}}"""
       }
       // Get Book List
+      //TODO - add error handling empty list - list to JSON
       if (rest_path.contains("/books/")){
         val book = Library.getAllBooks.toString
-        return book
+        return book.toString
       }
       // Get Book By Search With Title and Author
+      //TODO - add error handling empty list - list to JSON
       if (rest_path.contains("/books?q=")){
         val search_item = rest_path.split("=")(1).trim.toLowerCase
         val book = Library.searchBook(search_item).toString
-        return book
+
+        return book.toString
       }
 
-      "Invalid URL"
+      """{"message":"Invalid URL"}"""
     }
 
     def handlePostRequest(exchange: HttpExchange): String ={
 
-      //Add book
       if(exchange.getRequestURI.toString.contains("/books/book")){
         val str = Source.fromInputStream(exchange.getRequestBody).mkString.parseJson.asJsObject.getFields("isbn", "title", "author")
         str match{
           case Seq(JsString(isbn), JsString(title), JsString(author)) =>  Library.addBook(isbn, Book(isbn.trim,title.trim.toLowerCase,author.trim.toLowerCase))
-          case _ => """Error: Invalid JSON, JSON should be in the format {"isbn": <isbn>, "title": <title>, "author": <author>}"""
+          case _ =>
+            """{"message": "Invalid JSON format",
+              |"isbn": <isbn>,
+              |"title": <title>,
+              |"author": <author>}""".stripMargin
         }
       } else {
-        "Unknown URL"
+        """{"message":"Unknown URL"}"""
       }
 
     }
