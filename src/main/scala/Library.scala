@@ -6,7 +6,7 @@ object Library {
 
   def addBook(isbn: String, book: Book): String ={
     bookList.put(isbn, book)
-    s"""{{"message":"Successfully Added The Book!"},  ${ book.toString } }"""
+    s"""{"message":"Successfully Added The Book!","book":${ book.toString }}"""
   }
   def getBook(isbn: String): Option[Book] = bookList.get(isbn)
   def getAllBooks: List[Book] = bookList.values.toList

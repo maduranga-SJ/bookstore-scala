@@ -2,20 +2,24 @@ import com.sun.net.httpserver._
 import java.net._
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadPoolExecutor
-
 import scala.io.Source
-
 import spray.json._
 
 
 object WebServer extends App {
 
+  import java.nio.charset.Charset
+  import java.nio.charset.StandardCharsets
+
+  private val CHARSET = StandardCharsets.UTF_8
   val port:Int = 8001
   val hostname:String = "localhost"
   val server:HttpServer = HttpServer.create(new InetSocketAddress(hostname, port), 2)
   val threadPoolExecutor = Executors.newFixedThreadPool(10).asInstanceOf[ThreadPoolExecutor]
 
   server.createContext("/", new HttpHandler {
+//    val headers: Nothing = HttpHandler.getResponseHeaders
+//    val requestMethod: String = HttpHandler.getRequestMethod.toUpperCase
 
     def handle(exchange: HttpExchange): Unit ={
       var requestParamValue:String = null
@@ -41,14 +45,14 @@ object WebServer extends App {
       // Get Book List
       if (rest_path.contains("/books/")){
         val book = Library.getAllBooks.toString
-        return s"""{ ${book.drop(5).dropRight(1)} }"""
+        return s"""{ "books":[${book.drop(5).dropRight(1)}] }"""
       }
       // Get Book By Search With Title and Author
       if (rest_path.contains("/books?q=")){
         val search_item = rest_path.split("=")(1).trim.toLowerCase
         val book = Library.searchBook(search_item).toString
 
-        return s"""{ ${book.drop(5).dropRight(1)} }"""
+        return s"""{ "books":[${book.drop(5).dropRight(1)}] }"""
       }
 
       """{"message":"Invalid URL"}"""
@@ -61,10 +65,10 @@ object WebServer extends App {
         str match{
           case Seq(JsString(isbn), JsString(title), JsString(author)) =>  Library.addBook(isbn, Book(isbn.trim,title.trim.toLowerCase,author.trim.toLowerCase))
           case _ =>
-            """{"message": "Invalid JSON format",
+            """{"message": "Invalid JSON format","body":{
               |"isbn": <isbn>,
               |"title": <title>,
-              |"author": <author>}""".stripMargin
+              |"author": <author>}}""".stripMargin
         }
       } else {
         """{"message":"Unknown URL"}"""
@@ -74,6 +78,7 @@ object WebServer extends App {
 
     def handleResponse(exchange: HttpExchange, requestParamValue: String): Unit = {
       val outputStream = exchange.getResponseBody
+
 
 
       exchange.sendResponseHeaders(200, 0)
