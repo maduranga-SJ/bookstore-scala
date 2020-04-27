@@ -7,11 +7,15 @@ Scala 2.11
 
 JDK 1.8
 
-
-
 ### Built With
 
 [SBT](https://www.scala-sbt.org/) - Scala Built Tool
+
+### Instructions
+
+- Open the files in **IntelliJ** 
+- Create a sbt **run** task 
+- Run the app using the created task
 
 ### Sample Requests 
 
