@@ -4,19 +4,14 @@ import java.util.concurrent.Executors
 import java.util.concurrent.ThreadPoolExecutor
 import scala.io.Source
 import spray.json._
+import java.nio.charset.StandardCharsets
 
 
 object WebServer extends App {
 
-  import java.nio.charset.Charset
-  import java.nio.charset.StandardCharsets
-  import java.nio.charset.Charset
-  import java.nio.charset.StandardCharsets
 
   private val HEADER_CONTENT_TYPE = "Content-Type"
-
   private val CHARSET = StandardCharsets.UTF_8
-
   private val STATUS_OK = 200
 
   val port:Int = 8001
@@ -28,22 +23,28 @@ object WebServer extends App {
 
 
     def handle(exchange: HttpExchange): Unit ={
-      var requestParamValue:String = null
-
-      val headers: Headers = exchange.getResponseHeaders
-      val requestMethod: String = exchange.getRequestMethod.toUpperCase
+      var requestParamValue:String = null//String variable that holds the response body
+      val headers: Headers = exchange.getResponseHeaders//header object to change the response type to JSON
 
 
+      //call the relevant function depending on the type of the HTTP request
       if("GET".equals(exchange.getRequestMethod)) {
+
+        //for GET requests call handleGetRequest()
         requestParamValue = handleGetRequest(exchange)
       } else if("POST".equals(exchange.getRequestMethod)) {
+
+        //for POST requests call handlePostRequest()
         requestParamValue = handlePostRequest(exchange)
       }
+
+      //Set the header configurations of the responses
       headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET))
       val rawResponseBody = requestParamValue.getBytes(CHARSET)
       exchange.sendResponseHeaders(STATUS_OK, rawResponseBody.length)
       exchange.getResponseBody.write(rawResponseBody)
       handleResponse(exchange,requestParamValue)
+
     }
 
     def handleGetRequest(exchange: HttpExchange): String ={
@@ -72,7 +73,7 @@ object WebServer extends App {
 
       """{"message":"Invalid URL"}"""
     }
-
+    // POST Book to the in memory-database
     def handlePostRequest(exchange: HttpExchange): String ={
 
       if(exchange.getRequestURI.toString.contains("/books/book")){
@@ -93,8 +94,6 @@ object WebServer extends App {
 
     def handleResponse(exchange: HttpExchange, requestParamValue: String): Unit = {
       val outputStream = exchange.getResponseBody
-
-
 
       exchange.sendResponseHeaders(200, 0)
       outputStream.write(requestParamValue.getBytes())
