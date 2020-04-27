@@ -39,7 +39,7 @@ GET /books/
 GET /books/book/<<isbn>>
 ```
 #### Search books
-
+use a part of the auther or a part of the book name to search.
 ```
 GET /books?q=<<search team>>
 ```

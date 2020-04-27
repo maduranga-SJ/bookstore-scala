@@ -10,24 +10,39 @@ object WebServer extends App {
 
   import java.nio.charset.Charset
   import java.nio.charset.StandardCharsets
+  import java.nio.charset.Charset
+  import java.nio.charset.StandardCharsets
+
+  private val HEADER_CONTENT_TYPE = "Content-Type"
 
   private val CHARSET = StandardCharsets.UTF_8
+
+  private val STATUS_OK = 200
+
   val port:Int = 8001
   val hostname:String = "localhost"
   val server:HttpServer = HttpServer.create(new InetSocketAddress(hostname, port), 2)
   val threadPoolExecutor = Executors.newFixedThreadPool(10).asInstanceOf[ThreadPoolExecutor]
 
   server.createContext("/", new HttpHandler {
-//    val headers: Nothing = HttpHandler.getResponseHeaders
-//    val requestMethod: String = HttpHandler.getRequestMethod.toUpperCase
+
 
     def handle(exchange: HttpExchange): Unit ={
       var requestParamValue:String = null
+
+      val headers: Headers = exchange.getResponseHeaders
+      val requestMethod: String = exchange.getRequestMethod.toUpperCase
+
+
       if("GET".equals(exchange.getRequestMethod)) {
         requestParamValue = handleGetRequest(exchange)
       } else if("POST".equals(exchange.getRequestMethod)) {
         requestParamValue = handlePostRequest(exchange)
       }
+      headers.set(HEADER_CONTENT_TYPE, String.format("application/json; charset=%s", CHARSET))
+      val rawResponseBody = requestParamValue.getBytes(CHARSET)
+      exchange.sendResponseHeaders(STATUS_OK, rawResponseBody.length)
+      exchange.getResponseBody.write(rawResponseBody)
       handleResponse(exchange,requestParamValue)
     }
 
