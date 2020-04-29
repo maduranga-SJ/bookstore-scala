@@ -6,7 +6,7 @@ object Library {
   val bookList: mutable.HashMap[String,Book] = mutable.HashMap.empty
 
 
- //addBook function insert a new Book Object to the Hashmap
+  //addBook function insert a new Book Object to the Hashmap
   def addBook(isbn: String, book: Book): String ={
     bookList.put(isbn, book)
     s"""{"message":"Successfully Added The Book!","book":${ book.toString }}"""
