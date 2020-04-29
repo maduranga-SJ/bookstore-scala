@@ -7,7 +7,7 @@ object Library {
   // Create a HashMap object to act as the in-memory database
   val bookList: mutable.HashMap[String,Book] = mutable.HashMap.empty
 
-  
+
   //addBook function insert a new Book Object to the Hashmap
   def addBook(isbn: String, book: Book): Option[Book] ={
     bookList.put(isbn, book)
