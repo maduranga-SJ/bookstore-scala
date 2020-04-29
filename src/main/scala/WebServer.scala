@@ -14,7 +14,7 @@ object WebServer extends App {
   private val CHARSET = StandardCharsets.UTF_8
   private val STATUS_OK = 200
 
-  val port:Int = 8001
+  val port:Int = 8000
   val hostname:String = "localhost"
   val server:HttpServer = HttpServer.create(new InetSocketAddress(hostname, port), 2)
   val threadPoolExecutor = Executors.newFixedThreadPool(10).asInstanceOf[ThreadPoolExecutor]
