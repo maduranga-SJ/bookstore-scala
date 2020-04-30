@@ -1,13 +1,13 @@
 package controller
 
 import com.sun.net.httpserver.HttpExchange
-import io.circe.generic.semiauto.deriveDecoder
-import io.circe.{Decoder, parser}
-import model._
-import dao._
-
 import scala.io.Source
 import scala.util.matching.Regex
+import io.circe.generic.semiauto.deriveDecoder
+import io.circe.{Decoder, parser}
+
+import dao._
+import model._
 
 object PostRequestHandler {
 
@@ -25,12 +25,12 @@ object PostRequestHandler {
     }
   }
 
-  def addBook(exchange: HttpExchange): Unit ={
+  def addBook(exchange: HttpExchange): Unit = {
     val jsonStr = Source.fromInputStream(exchange.getRequestBody).mkString
     implicit val bookDecoder: Decoder[Book] = deriveDecoder[Book]
     val decodeResult = parser.decode[Book](jsonStr)
     decodeResult match {
-      case Right(book) => ResponseHandler(exchange, AddBookResponse( ADD_BOOK_SUCCESS_MESSAGE, Library.addBook(book.isbn, book).orNull))
+      case Right(book) => ResponseHandler(exchange, AddBookResponse(ADD_BOOK_SUCCESS_MESSAGE, Library.addBook(book.isbn, book).getOrElse(Book("", "", ""))))
       case Left(error) => ResponseHandler(exchange, InvalidRequestMethodResponse(error.getMessage))
     }
   }

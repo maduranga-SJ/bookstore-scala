@@ -8,10 +8,6 @@
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\api\WebServer$delayedInit$body.class
 [debug] 	api\WebServer.class
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\api\WebServer.class
-[debug] 	Book$.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\Book$.class
-[debug] 	Book.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\Book.class
 [debug] 	controller
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\controller
 [debug] 	controller\AddBookResponse$$anon$1.class
@@ -34,6 +30,8 @@
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\controller\GetBookResponse$.class
 [debug] 	controller\GetBookResponse.class
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\controller\GetBookResponse.class
+[debug] 	controller\GetRequestHandler$$anonfun$apply$1.class
+[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\controller\GetRequestHandler$$anonfun$apply$1.class
 [debug] 	controller\GetRequestHandler$.class
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\controller\GetRequestHandler$.class
 [debug] 	controller\GetRequestHandler.class
@@ -46,6 +44,8 @@
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\controller\InvalidRequestMethodResponse.class
 [debug] 	controller\PostRequestHandler$$anonfun$1.class
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\controller\PostRequestHandler$$anonfun$1.class
+[debug] 	controller\PostRequestHandler$$anonfun$addBook$1.class
+[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\controller\PostRequestHandler$$anonfun$addBook$1.class
 [debug] 	controller\PostRequestHandler$.class
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\controller\PostRequestHandler$.class
 [debug] 	controller\PostRequestHandler$anon$lazy$macro$11$1$$anon$1.class
@@ -78,14 +78,10 @@
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\dao\Library$.class
 [debug] 	dao\Library.class
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\dao\Library.class
-[debug] 	Library$$anonfun$1.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\Library$$anonfun$1.class
-[debug] 	Library$$anonfun$2.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\Library$$anonfun$2.class
-[debug] 	Library$.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\Library$.class
-[debug] 	Library.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\Library.class
+[debug] 	META-INF
+[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\META-INF
+[debug] 	META-INF\bookstore-scala-final-github.kotlin_module
+[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\META-INF\bookstore-scala-final-github.kotlin_module
 [debug] 	model
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\model
 [debug] 	model\Book$$anon$1.class
@@ -94,14 +90,8 @@
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\model\Book$.class
 [debug] 	model\Book.class
 [debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\model\Book.class
-[debug] 	WebServer$$anon$1$$anonfun$1.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\WebServer$$anon$1$$anonfun$1.class
-[debug] 	WebServer$$anon$1.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\WebServer$$anon$1.class
-[debug] 	WebServer$.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\WebServer$.class
-[debug] 	WebServer$delayedInit$body.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\WebServer$delayedInit$body.class
-[debug] 	WebServer.class
-[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\WebServer.class
+[debug] 	model\CleanBook$.class
+[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\model\CleanBook$.class
+[debug] 	model\CleanBook.class
+[debug] 	  C:\Users\Maduranga.J\Desktop\projects_ij\bookstore-scala-final-github\target\scala-2.11\classes\model\CleanBook.class
 [debug] Done packaging.

@@ -1,8 +1,11 @@
 package controller
 
 import com.sun.net.httpserver.HttpExchange
-import dao.Library
 import scala.util.matching.Regex
+
+import dao.Library
+import model.Book
+
 
 object GetRequestHandler {
 
@@ -18,8 +21,8 @@ object GetRequestHandler {
   def apply(exchange: HttpExchange): Unit = {
     val requestURI = exchange.getRequestURI.toString
     requestURI match {
-      case ISBNPattern(_, param) => ResponseHandler(exchange, GetBookResponse(GET_BOOK_SUCCESS_MESSAGE, Library.getBook(param.trim.toLowerCase).orNull))
-      case TitleAuthorPattern(_,param) => ResponseHandler(exchange, GetBookListResponse(SEARCH_BOOK_SUCCESS_MESSAGE, Library.searchBook(param.trim.toLowerCase)))
+      case ISBNPattern(_, param) => ResponseHandler(exchange, GetBookResponse(GET_BOOK_SUCCESS_MESSAGE, Library.getBook(param.trim.toLowerCase).getOrElse(Book("", "", ""))))
+      case TitleAuthorPattern(_, param) => ResponseHandler(exchange, GetBookListResponse(SEARCH_BOOK_SUCCESS_MESSAGE, Library.searchBook(param.trim.toLowerCase)))
       case ListPattern(_) => ResponseHandler(exchange, GetBookListResponse(GET_BOOK_LIST_SUCCESS_MESSAGE, Library.getAllBooks))
       case _ => ResponseHandler(exchange, InvalidRequestMethodResponse(INVALID_URL_MESSAGE))
     }

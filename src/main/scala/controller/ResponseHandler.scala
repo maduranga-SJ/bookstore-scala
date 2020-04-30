@@ -1,9 +1,7 @@
 package controller
 
 import java.nio.charset.{Charset, StandardCharsets}
-
 import com.sun.net.httpserver.HttpExchange
-
 import io.circe.syntax._
 
 object ResponseHandler {

@@ -2,7 +2,7 @@ package controller
 
 import com.sun.net.httpserver.{HttpExchange, HttpHandler}
 
-class RequestHandler extends HttpHandler{
+class RequestHandler extends HttpHandler {
 
   private val METHOD_GET = "GET"
   private val METHOD_POST = "POST"
