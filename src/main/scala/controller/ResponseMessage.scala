@@ -22,10 +22,10 @@ case class GetBookResponse(message: String, book: Book) extends ResponseMessage
 
 object GetBookResponse {
   implicit val encoderGetBookResponse: Encoder[GetBookResponse] = new Encoder[GetBookResponse]() {
-    final def apply(r: GetBookResponse): Json = Json.obj(
-      ("message", Json.fromString(r.message)),
-      ("book", r.book.asJson)
-    )
+
+    final def apply(r: GetBookResponse): Json = {
+      if(r.book.isEmpty()){  Json.obj(("message", Json.fromString("No match found")))}
+      else {Json.obj(("message", Json.fromString(r.message)), ("book", r.book.asJson))}}
   }
 }
 
@@ -33,10 +33,10 @@ case class GetBookListResponse(message: String, booklist: List[Book]) extends Re
 
 object GetBookListResponse {
   implicit val encoderGetBookListResponse: Encoder[GetBookListResponse] = new Encoder[GetBookListResponse]() {
-    final def apply(r: GetBookListResponse): Json = Json.obj(
-      ("message", Json.fromString(r.message)),
-      ("booklist", r.booklist.asJson)
-    )
+    final def apply(r: GetBookListResponse): Json ={
+      if(r.booklist.isEmpty){   Json.obj(("message", Json.fromString("No match found")))}
+      else{Json.obj(("message", Json.fromString(r.message)), ("booklist", r.booklist.asJson))}
+    }
   }
 }
 

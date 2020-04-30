@@ -1,7 +1,6 @@
 package dao
 
 import model.Book
-import model.CleanBook._
 import scala.collection.mutable
 
 object Library {
@@ -12,12 +11,12 @@ object Library {
 
   //addBook function insert a new Book Object to the Hashmap
   def addBook(isbn: String, book: Book): Option[Book] = {
-    bookList.put(cleanIsbn(isbn), cleanBook(book))
+    bookList.put(isbn, book.lowerBook(book))
     getBook(isbn)
   }
 
   //getBook function returns all the book objects
-  def getBook(isbn: String): Option[Book] = bookList.get(cleanIsbn(isbn))
+  def getBook(isbn: String): Option[Book] = bookList.get(isbn)
 
   //getBook function returns all the book objects
   def getAllBooks: List[Book] = bookList.values.toList

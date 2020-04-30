@@ -8,10 +8,10 @@ import model.Book
 
 
 object GetRequestHandler {
-
-  private val GET_BOOK_SUCCESS_MESSAGE = "Successfully Retrieved the Book"
-  private val SEARCH_BOOK_SUCCESS_MESSAGE = "Successfully Retrieved the Matching Books"
-  private val GET_BOOK_LIST_SUCCESS_MESSAGE = "Successfully Retrieved All Books"
+  //Response messages
+  private val GET_BOOK_SUCCESS_MESSAGE = "Matching Book"
+  private val SEARCH_BOOK_SUCCESS_MESSAGE = "Matching Books"
+  private val GET_BOOK_LIST_SUCCESS_MESSAGE = "All Books"
   private val INVALID_URL_MESSAGE = "Invalid URL"
 
   private val ISBNPattern: Regex = "(/books/book/)(.*)".r
