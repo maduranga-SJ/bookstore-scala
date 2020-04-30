@@ -1,5 +1,5 @@
 package model
-
+//Format parameters of a book object
 object CleanBook {
 
   def cleanBook(book: Book): Book = {

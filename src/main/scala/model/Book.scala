@@ -6,6 +6,7 @@ import io.circe.{Encoder, Json}
 case class Book(isbn: String, title: String, author: String)
 
 object Book {
+  //Convert Book object to a Json object
   implicit val encoderBook = new Encoder[Book]() {
     final def apply(b: Book): Json = Json.obj(
       ("isbn", Json.fromString(b.isbn)),

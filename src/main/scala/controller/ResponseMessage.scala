@@ -6,6 +6,7 @@ import model.Book
 
 sealed trait ResponseMessage
 
+//Combine the response message with the response values to create complete responses for each request
 case class AddBookResponse(message: String, book: Book) extends ResponseMessage
 
 object AddBookResponse {

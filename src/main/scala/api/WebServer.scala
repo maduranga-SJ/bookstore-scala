@@ -7,7 +7,7 @@ import java.util.concurrent.{Executors, ThreadPoolExecutor}
 import controller.RequestHandler
 
 object WebServer extends App {
-
+//Configure and start the server
   private val PORT: Int = 8000
   private val BACKLOG: Int = 2
   private val HOSTNAME: String = "localhost"

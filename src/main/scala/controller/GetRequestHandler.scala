@@ -18,6 +18,7 @@ object GetRequestHandler {
   private val TitleAuthorPattern: Regex = "(/books[?]q=)(.*)".r
   private val ListPattern: Regex = "(/books/)".r
 
+  //Call the suitable Library method for different GET requests
   def apply(exchange: HttpExchange): Unit = {
     val requestURI = exchange.getRequestURI.toString
     requestURI match {

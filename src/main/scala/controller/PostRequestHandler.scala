@@ -24,7 +24,7 @@ object PostRequestHandler {
       case _ => ResponseHandler(exchange, InvalidRequestMethodResponse(INVALID_URL_MESSAGE))
     }
   }
-
+// Add new book to the in memory database
   def addBook(exchange: HttpExchange): Unit = {
     val jsonStr = Source.fromInputStream(exchange.getRequestBody).mkString
     implicit val bookDecoder: Decoder[Book] = deriveDecoder[Book]
