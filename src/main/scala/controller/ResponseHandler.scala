@@ -23,7 +23,7 @@ object ResponseHandler {
       case GetBookListResponse(msg,bookList) => sendResponse(exchange, STATUS_OK, GetBookListResponse(msg, bookList).asJson.noSpaces)
     }
   }
-  //Convert the responseBody to a JSON response and send the response to the destination
+//Convert the responseBody to a JSON response and send the response to the destination
   def sendResponse(exchange: HttpExchange, statusCode: Int, responseBody: String ): Unit ={
 
     val header = exchange.getResponseHeaders

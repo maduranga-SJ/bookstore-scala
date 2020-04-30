@@ -11,7 +11,7 @@ class RequestHandler extends HttpHandler {
   override def handle(exchange: HttpExchange): Unit = {
     exchange.getRequestMethod.toUpperCase match {
 
-      //Identify the GET and POST requests separately and call suitable Request Handler objects
+        //Identify the GET and POST requests separately and call suitable Request Handler objects
       case METHOD_GET => GetRequestHandler(exchange)
       case METHOD_POST => PostRequestHandler(exchange)
       case _ => ResponseHandler(exchange, InvalidRequestMethodResponse(INVALID_ERROR))
