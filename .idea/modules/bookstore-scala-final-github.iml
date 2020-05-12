@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="add_clean [file:/C:/Users/Maduranga.J/Desktop/projects_ij/add_clean/]" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="bookstore-scala-final-github [file:/C:/Users/Maduranga.J/Desktop/projects_ij/bookstore-scala-final-github/]" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/../../target/scala-2.11/classes" />
     <output-test url="file://$MODULE_DIR$/../../target/scala-2.11/test-classes" />
@@ -12,19 +12,21 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.11.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.typelevel:macro-compat_2.11:1.1.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.typelevel:machinist_2.11:0.6.6:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.typelevel:jawn-parser_2.11:0.14.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.typelevel:cats-macros_2.11:1.5.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.typelevel:cats-kernel_2.11:1.5.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.typelevel:cats-core_2.11:1.5.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.scala-lang:scala-reflect:2.11.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: io.circe:circe-parser_2.11:0.11.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: io.circe:circe-numbers_2.11:0.11.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: io.circe:circe-jawn_2.11:0.11.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: io.circe:circe-generic_2.11:0.11.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: io.circe:circe-core_2.11:0.11.1:jar" level="project" />
-    <orderEntry type="library" name="sbt: com.chuusai:shapeless_2.11:2.3.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.slf4j:slf4j-api:1.7.26:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.rabbitmq:amqp-client:5.7.3:jar" level="project" />
     <orderEntry type="library" name="sbt: io.spray:spray-json_2.11:1.3.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.chuusai:shapeless_2.11:2.3.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.circe:circe-core_2.11:0.11.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.circe:circe-generic_2.11:0.11.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.circe:circe-jawn_2.11:0.11.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.circe:circe-numbers_2.11:0.11.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.circe:circe-parser_2.11:0.11.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang:scala-reflect:2.11.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-core_2.11:1.5.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-kernel_2.11:1.5.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-macros_2.11:1.5.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:jawn-parser_2.11:0.14.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:machinist_2.11:0.6.6:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:macro-compat_2.11:1.1.1:jar" level="project" />
   </component>
 </module>

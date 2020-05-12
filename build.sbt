@@ -9,5 +9,6 @@ libraryDependencies ++= Seq(
   "io.circe"  %% "circe-core"     % circeVersion,
   "io.circe"  %% "circe-generic"  % circeVersion,
   "io.circe"  %% "circe-parser"   % circeVersion,
-"io.spray" %%  "spray-json" % "1.3.5"
+"io.spray" %%  "spray-json" % "1.3.5",
+  "com.rabbitmq" % "amqp-client" % "5.7.3",
 )
