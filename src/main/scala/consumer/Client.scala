@@ -2,7 +2,6 @@ package consumer
 
 import java.util.UUID
 import java.util.concurrent.{ArrayBlockingQueue, BlockingQueue}
-
 import com.rabbitmq.client.AMQP.BasicProperties
 import com.rabbitmq.client._
 
@@ -30,9 +29,9 @@ class Client(host: String) {
   val requestQueueName: String = "rpc_queue"
   val replyQueueName: String = channel.queueDeclare().getQueue
 
-  def call(message: String): String = {
+  def call(message: String,method:String): String = {
     val corrId = UUID.randomUUID().toString
-    val props = new BasicProperties.Builder().correlationId(corrId)
+    val props = new BasicProperties.Builder().correlationId(corrId).contentType(method.toUpperCase())
       .replyTo(replyQueueName)
       .build()
     channel.basicPublish("", requestQueueName, props, message.getBytes("UTF-8"))
@@ -50,7 +49,6 @@ class Client(host: String) {
     connection.close()
   }
 }
-
 object Client {
 
   def main(argv: Array[String]) {
@@ -61,7 +59,7 @@ object Client {
 
       Library = new Client(host)
       println(" Request : Insert Book")
-      response = Library.call(s"""{"isbn" : "978-1-56619-909-519",  "title" : "Musical Life",  "author" : "jack sparrow"}""")
+      response = Library.call(s"""{"isbn" : "978-1-56619-909-519",  "title" : "Musical Life",  "author" : "jack sparrow"}""","POST")
       println(" Response :  '" + response + "'")
     } catch {
       case e: Exception => e.printStackTrace()
