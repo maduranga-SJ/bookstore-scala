@@ -1,10 +1,10 @@
-package api
+package server
 
 import com.sun.net.httpserver.HttpServer
 import java.net.InetSocketAddress
 import java.util.concurrent.{Executors, ThreadPoolExecutor}
 
-import controller.RequestHandler
+import handler.RequestHandler
 
 object WebServer extends App {
 //Configure and start the server

@@ -1,4 +1,4 @@
-package dao
+package db
 
 import model.Book
 import scala.collection.mutable

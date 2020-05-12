@@ -1,4 +1,4 @@
-package controller
+package handler
 
 import com.sun.net.httpserver.HttpExchange
 import scala.io.Source
@@ -6,7 +6,7 @@ import scala.util.matching.Regex
 import io.circe.generic.semiauto.deriveDecoder
 import io.circe.{Decoder, parser}
 
-import dao._
+import db._
 import model._
 
 object PostRequestHandler {

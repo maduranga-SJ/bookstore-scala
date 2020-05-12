@@ -1,4 +1,4 @@
-package Consumer
+package consumer
 
 import java.util.UUID
 import java.util.concurrent.{ArrayBlockingQueue, BlockingQueue}

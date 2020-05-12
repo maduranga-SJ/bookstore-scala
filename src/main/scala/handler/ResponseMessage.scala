@@ -1,4 +1,4 @@
-package controller
+package handler
 
 import io.circe.syntax._
 import io.circe.{Encoder, Json}

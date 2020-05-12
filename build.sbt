@@ -12,3 +12,4 @@ libraryDependencies ++= Seq(
 "io.spray" %%  "spray-json" % "1.3.5",
   "com.rabbitmq" % "amqp-client" % "5.7.3",
 )
+mainClass in (Compile, run) := Some("server.WebServer")

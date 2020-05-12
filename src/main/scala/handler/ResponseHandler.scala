@@ -1,4 +1,4 @@
-package controller
+package handler
 
 import java.nio.charset.{Charset, StandardCharsets}
 import com.sun.net.httpserver.HttpExchange
