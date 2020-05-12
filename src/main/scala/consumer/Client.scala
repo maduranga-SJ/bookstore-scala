@@ -51,15 +51,15 @@ class Client(host: String) {
 }
 object Client {
 
-  def main(argv: Array[String]) {
+  def main(argv: Array[String]) {//argv(0) = host , argv(1) = request body , argv(2) = request type (GET /POST)
     var Library: Client = null
     var response: String = null
     try {
       val host = if (argv.isEmpty) "localhost" else argv(0)
 
       Library = new Client(host)
-      println(" Request : Insert Book")
-      response = Library.call(s"""{"isbn" : "978-1-56619-909-519",  "title" : "Musical Life",  "author" : "jack sparrow"}""","POST")
+      println(" Sending Request ...")
+      response = Library.call(argv(1),argv(2))
       println(" Response :  '" + response + "'")
     } catch {
       case e: Exception => e.printStackTrace()
