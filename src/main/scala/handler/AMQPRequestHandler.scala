@@ -20,7 +20,7 @@ object AMQPRequestHandler {
       case Left(error) => InvalidRequestMethodResponse(error.getMessage).asJson.noSpaces
     }
   }
-
+//handle all the requests for the AMQP server using the request type
   def requestHandlerAMQP(jsonStr: String, requestType: String): String = {
     val GET_BOOK_SUCCESS_MESSAGE = "Matching Book"
     val SEARCH_BOOK_SUCCESS_MESSAGE = "Matching Books"

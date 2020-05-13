@@ -1,15 +1,13 @@
 package handler
 
 import com.sun.net.httpserver.HttpExchange
-import io.circe.syntax._
+import db._
+import io.circe.generic.semiauto.deriveDecoder
+import io.circe.{Decoder, parser}
+import model._
 
 import scala.io.Source
 import scala.util.matching.Regex
-import io.circe.generic.semiauto.deriveDecoder
-import io.circe.{Decoder, parser}
-import db._
-import handler.GetRequestHandler.{GET_BOOK_LIST_SUCCESS_MESSAGE, GET_BOOK_SUCCESS_MESSAGE, INVALID_URL_MESSAGE, SEARCH_BOOK_SUCCESS_MESSAGE}
-import model._
 
 object PostRequestHandler {
 
