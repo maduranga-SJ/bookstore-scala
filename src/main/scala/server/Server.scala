@@ -1,10 +1,8 @@
 package server
 
 import java.util.concurrent.CountDownLatch
-import handler.RequestHandler
 import com.rabbitmq.client.AMQP.BasicProperties
 import com.rabbitmq.client._
-import com.sun.net.httpserver.HttpExchange
 
 class ServerCallback(val ch: Channel, val latch: CountDownLatch) extends DeliverCallback {
 
@@ -16,11 +14,11 @@ class ServerCallback(val ch: Channel, val latch: CountDownLatch) extends Deliver
 
     try {
       val message = new String(delivery.getBody, "UTF-8")
-
-      println(" Recieved :(" + message + ")")
-      response = "" + delivery.getProperties.getContentType
+      println(" Recieved : " + message )
 
 
+
+      response = "" + delivery.getProperties.getContentType//TODO add the response from the bookstore servove
     } catch {
       case e: Exception => {
         println(" [.] " + e.toString)
@@ -40,20 +38,17 @@ object Server {
   def main(argv: Array[String]) {
     var connection: Connection = null
     var channel: Channel = null
-    val requestHandler: RequestHandler = null
-    val exchange : HttpExchange = null
     try {
-      WebServer.start()
-
       val factory = new ConnectionFactory()
       factory.setHost("localhost")
       connection = factory.newConnection()
       channel = connection.createChannel()
       channel.queueDeclare(RPC_QUEUE_NAME, false, false, false, null)
       channel.basicQos(1)
-      // stop after one consumed message since this is example code
-      val latch = new CountDownLatch(1)
+      val latch = new CountDownLatch(10)//TODO reponds for 10 req make it infinite
       val serverCallback = new ServerCallback(channel, latch)
+
+
       val cancel = new CancelCallback {
         override def handle(consumerTag: String): Unit = {}
       }
