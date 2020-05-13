@@ -31,7 +31,7 @@ class ServerCallback(val ch: Channel, val latch: CountDownLatch) extends Deliver
     } finally {
       ch.basicPublish("", delivery.getProperties.getReplyTo, replyProps, response.getBytes("UTF-8"))
       ch.basicAck(delivery.getEnvelope.getDeliveryTag, false)
-      latch.countDown()
+
     }
   }
 }
@@ -49,7 +49,7 @@ object AMQPServer {
       channel = connection.createChannel()
       channel.queueDeclare(RPC_QUEUE_NAME, false, false, false, null)
       channel.basicQos(1)
-      val latch = new CountDownLatch(10)//TODO reponds for 10 req make it infinite
+      val latch = new CountDownLatch(1)
       val serverCallback = new ServerCallback(channel, latch)
 
 
@@ -58,7 +58,7 @@ object AMQPServer {
       }
       channel.basicConsume(RPC_QUEUE_NAME, false, serverCallback, cancel)
       println(" Awaiting requests from Consumer ...")
-      latch.await()
+     latch.await()
     } catch {
       case e: Exception => e.printStackTrace()
     } finally {
