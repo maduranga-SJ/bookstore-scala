@@ -1,8 +1,13 @@
 package server
 
 import java.util.concurrent.CountDownLatch
+
 import com.rabbitmq.client.AMQP.BasicProperties
 import com.rabbitmq.client._
+import db.Library
+import handler.{AddBookResponse, PostRequestHandler}
+import handler.PostRequestHandler.ADD_BOOK_SUCCESS_MESSAGE
+import model.Book
 
 class ServerCallback(val ch: Channel, val latch: CountDownLatch) extends DeliverCallback {
 
@@ -16,9 +21,9 @@ class ServerCallback(val ch: Channel, val latch: CountDownLatch) extends Deliver
       val message = new String(delivery.getBody, "UTF-8")
       println(" Recieved : " + message )
 
+      response =PostRequestHandler.addBook(message)
 
-
-      response = "" + delivery.getProperties.getContentType//TODO add the response from the bookstore servove
+     // response = "" + delivery.getProperties.getContentType//TODO add the response from the bookstore servove
     } catch {
       case e: Exception => {
         println(" [.] " + e.toString)
@@ -32,7 +37,7 @@ class ServerCallback(val ch: Channel, val latch: CountDownLatch) extends Deliver
   }
 }
 
-object Server {
+object AMQPServer {
   private val RPC_QUEUE_NAME = "rpc_queue"
 
   def main(argv: Array[String]) {

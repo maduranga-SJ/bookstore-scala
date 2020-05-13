@@ -1,1 +1,1 @@
-["test.ob1"]
+["consumer.Client","server.AMQPServer","server.WebServer"]

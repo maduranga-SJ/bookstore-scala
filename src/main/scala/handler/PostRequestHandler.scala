@@ -1,15 +1,18 @@
 package handler
 
 import com.sun.net.httpserver.HttpExchange
+import io.circe.syntax._
+
 import scala.io.Source
 import scala.util.matching.Regex
 import io.circe.generic.semiauto.deriveDecoder
 import io.circe.{Decoder, parser}
-
 import db._
+import handler.GetRequestHandler.{GET_BOOK_LIST_SUCCESS_MESSAGE, GET_BOOK_SUCCESS_MESSAGE, INVALID_URL_MESSAGE, SEARCH_BOOK_SUCCESS_MESSAGE}
 import model._
 
 object PostRequestHandler {
+
 
   private val ADD_BOOK_SUCCESS_MESSAGE = "Successfully Added The Book"
   private val INVALID_URL_MESSAGE = "Invalid Url to Add the Book"
@@ -24,9 +27,11 @@ object PostRequestHandler {
       case _ => ResponseHandler(exchange, InvalidRequestMethodResponse(INVALID_URL_MESSAGE))
     }
   }
-// Add new book to the in memory database
+
+  // Add new book to the in memory database
   def addBook(exchange: HttpExchange): Unit = {
     val jsonStr = Source.fromInputStream(exchange.getRequestBody).mkString
+    println(jsonStr)
     implicit val bookDecoder: Decoder[Book] = deriveDecoder[Book]
     val decodeResult = parser.decode[Book](jsonStr)
     decodeResult match {
@@ -34,4 +39,7 @@ object PostRequestHandler {
       case Left(error) => ResponseHandler(exchange, InvalidRequestMethodResponse(error.getMessage))
     }
   }
+
+
+
 }
