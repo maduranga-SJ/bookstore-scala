@@ -54,7 +54,7 @@ GET /books?q=<<search team>>
 
 - Run AMQPServer.scala located in server package 
 - Run Cilent.scala located in consumer package
-- The request parameters should be added ass commandline parameters  
+- The request parameters should be given as commandline parameters  
 
 order of commandline arguments
 
