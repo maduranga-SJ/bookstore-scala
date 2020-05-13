@@ -59,7 +59,7 @@ object Client {
 
       Library = new Client(host)
       println(" Sending Request ...")
-      response = Library.call(argv(1),argv(2))
+      response = Library.call(argv(2),argv(1))
       println(" Response :  '" + response + "'")
     } catch {
       case e: Exception => e.printStackTrace()
