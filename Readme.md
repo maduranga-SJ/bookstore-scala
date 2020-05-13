@@ -48,6 +48,45 @@ use a part of the auther or a part of the book name to search.
 GET /books?q=<<search team>>
 ```
 
+### Sample Requests for AMQP requests
+
+### Instructions
+
+- Run AMQPServer.scala located in server package 
+- Run Cilent.scala located in consumer package
+- The request parameters should be added ass commandline parameters  
+
+order of commandline arguments
+
+[host] [request type] [request body] 
+
+example
+```
+localhost SEARCH life
+```
+#### Add Book
+
+```
+localhost ADD_BOOK {\"isbn\":\"978-1-56619-909-519\",\"title\":\"Musical_Life\",\"author\":\"jack_sparrow\"}
+```
+
+
+#### Return a book by ISBN
+
+```
+localhost GET_BY_ID 978-1-56619-909-519
+```
+#### Return all the books
+
+```
+localhost GET_ALL
+```
+#### Search books
+use a part of the auther or a part of the book name to search.
+```
+localhost SEARCH life
+```
+
 ### Author
 
 [Maduranga Jayasooriya](https://www.linkedin.com/in/madurangajayasooriya/)
