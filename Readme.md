@@ -71,7 +71,7 @@ localhost SEARCH life
 #### Add Book
 
 ```
-localhost ADD_BOOK {\"isbn\":\"978-1-56619-909-519\",\"title\":\"Musical_Life\",\"author\":\"jack_sparrow\"}
+localhost ADD_BOOK "{\"isbn\":\"978-1-56619-909-519\",\"title\":\"Musical Life\",\"author\":\"jack sparrow\"}"
 ```
 
 
