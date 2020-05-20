@@ -3,22 +3,20 @@ package model
 import io.circe.{Encoder, Json}
 
 // The type Book definition
-case class Book(isbn: String, title: String, author: String){
+case class Book(isbn: String, title: String, author: String) {
   def lowerBook(book: Book): Book = {
     val title = book.title.trim.toLowerCase
     val author = book.author.trim.toLowerCase
     Book(isbn, title, author)
   }
 
-  def isEmpty(): Boolean ={
-    if(isbn == ""){
+  def isEmpty(): Boolean = {
+    if (isbn == "") {
       true
-    }else{
+    } else {
       false
     }
   }
-
-
 }
 
 object Book {
@@ -30,5 +28,4 @@ object Book {
       ("author", Json.fromString(b.author))
     )
   }
-
 }

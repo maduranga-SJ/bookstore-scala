@@ -8,7 +8,6 @@ object Library {
   // Create a HashMap object to act as the in-memory database
   val bookList: mutable.HashMap[String, Book] = mutable.HashMap.empty
 
-
   //addBook function insert a new Book Object to the Hashmap
   def addBook(isbn: String, book: Book): Option[Book] = {
     bookList.put(isbn, book.lowerBook(book))
@@ -23,7 +22,6 @@ object Library {
 
   //searchBook function returns all the book objects which contains the search query in author or book title
   def searchBook(query_param: String): List[Book] = {
-
     val searchListTitle = bookList.values.filter(_.title.contains(query_param)).toList
     val searchListAuthor = bookList.values.filter(_.author.contains(query_param)).toList
 
@@ -37,4 +35,5 @@ object Library {
 
   }
 }
+
 

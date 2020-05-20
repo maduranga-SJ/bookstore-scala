@@ -9,7 +9,6 @@ import model.Book
 object AMQPRequestHandler {
   private val ADD_BOOK_SUCCESS_MESSAGE = "Successfully Added The Book"
 
-
   // Add new book for AMQP Request
   def addBook(jsonStr: String): String = {
     println(jsonStr)
@@ -20,7 +19,8 @@ object AMQPRequestHandler {
       case Left(error) => InvalidRequestMethodResponse(error.getMessage).asJson.noSpaces
     }
   }
-//handle all the requests for the AMQP server using the request type
+
+  //handle all the requests for the AMQP server using the request type
   def requestHandlerAMQP(jsonStr: String, requestType: String): String = {
     val GET_BOOK_SUCCESS_MESSAGE = "Matching Book"
     val SEARCH_BOOK_SUCCESS_MESSAGE = "Matching Books"
@@ -34,5 +34,5 @@ object AMQPRequestHandler {
       case _ => InvalidRequestMethodResponse(INVALID_URL_MESSAGE).asJson.noSpaces
     }
   }
-
 }
+

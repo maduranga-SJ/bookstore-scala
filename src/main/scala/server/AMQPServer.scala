@@ -1,10 +1,10 @@
 package server
 
 import java.util.concurrent.CountDownLatch
-
 import com.rabbitmq.client.AMQP.BasicProperties
 import com.rabbitmq.client._
 import handler.AMQPRequestHandler
+import scala.util.{Failure, Success, Try}
 
 class ServerCallback(val ch: Channel, val latch: CountDownLatch) extends DeliverCallback {
 
@@ -13,52 +13,51 @@ class ServerCallback(val ch: Channel, val latch: CountDownLatch) extends Deliver
     val replyProps = new BasicProperties.Builder()
       .correlationId(delivery.getProperties.getCorrelationId)
       .build
-    try {
-      val message = new String(delivery.getBody, "UTF-8")
-      println(" Recieved : " + message )
-      //Call the Request handler and save the returned response
-      response =AMQPRequestHandler.requestHandlerAMQP(message,delivery.getProperties.getContentType)
-    } catch {
-      case e: Exception => {
+
+    val message = new String(delivery.getBody, "UTF-8")
+    println(" Recieved : " + message)
+    //Call the Request handler and save the returned response
+    Try(AMQPRequestHandler.requestHandlerAMQP(message, delivery.getProperties.getContentType)) match {
+      case Success(v) => response = "" + v
+      case Failure(e) => {
         println(" [.] " + e.toString)
         response = ""
       }
-    } finally {
-      // send the response to the response queue
-      ch.basicPublish("", delivery.getProperties.getReplyTo, replyProps, response.getBytes("UTF-8"))
-      ch.basicAck(delivery.getEnvelope.getDeliveryTag, false)
     }
+    // send the response to the response queue
+    ch.basicPublish("", delivery.getProperties.getReplyTo, replyProps, response.getBytes("UTF-8"))
+    ch.basicAck(delivery.getEnvelope.getDeliveryTag, false)
   }
 }
 
 object AMQPServer {
   private val RPC_QUEUE_NAME = "rpc_queue"
+
   def main(argv: Array[String]) {
     var connection: Connection = null
     var channel: Channel = null
-    try {
-      val factory = new ConnectionFactory()
-      factory.setHost("localhost")
-      connection = factory.newConnection()
-      channel = connection.createChannel()
-      channel.queueDeclare(RPC_QUEUE_NAME, false, false, false, null)
-      channel.basicQos(1)
-      val latch = new CountDownLatch(1)
-      val serverCallback = new ServerCallback(channel, latch)
-      val cancel = new CancelCallback {override def handle(consumerTag: String): Unit = {}}
-      channel.basicConsume(RPC_QUEUE_NAME, false, serverCallback, cancel)
-      println(" Awaiting requests from Consumer ...")
-      latch.await()
-    } catch {
-      case e: Exception => e.printStackTrace()
-    } finally {
-      if (connection != null) {
-        try {
-          connection.close()
-        } catch {
-          case ignore: Exception =>
+    Try(new ConnectionFactory) match {
+      case Success(factory) => {
+        factory.setHost("localhost")
+        connection = factory.newConnection()
+        channel = connection.createChannel()
+        channel.queueDeclare(RPC_QUEUE_NAME, false, false, false, null)
+        channel.basicQos(1)
+        val latch = new CountDownLatch(1)
+        val serverCallback = new ServerCallback(channel, latch)
+        val cancel = new CancelCallback {
+          override def handle(consumerTag: String): Unit = {}
         }
+        channel.basicConsume(RPC_QUEUE_NAME, false, serverCallback, cancel)
+        println(" Awaiting requests from Consumer ...")
+        latch.await()
       }
+      case Failure(e) => e.printStackTrace()
+        if (connection != null) {
+          Try(connection.close()) match {
+            case Failure(e) => e.printStackTrace()
+          }
+        }
     }
   }
 }

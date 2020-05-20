@@ -5,17 +5,14 @@ import db._
 import io.circe.generic.semiauto.deriveDecoder
 import io.circe.{Decoder, parser}
 import model._
-
 import scala.io.Source
 import scala.util.matching.Regex
 
 object PostRequestHandler {
 
-
   private val ADD_BOOK_SUCCESS_MESSAGE = "Successfully Added The Book"
   private val INVALID_URL_MESSAGE = "Invalid Url to Add the Book"
   private val INVALID_JSON_MESSAGE = """Invalid Json, Please Provide a JSON with {"isbn":<isbn>, "title":<title>, "author":<author>} """
-
   private val addBookPattern: Regex = "(/books/book.*)".r
 
   def apply(exchange: HttpExchange): Unit = {
@@ -37,7 +34,4 @@ object PostRequestHandler {
       case Left(error) => ResponseHandler(exchange, InvalidRequestMethodResponse(error.getMessage))
     }
   }
-
-
-
 }
