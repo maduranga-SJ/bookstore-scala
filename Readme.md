@@ -85,7 +85,7 @@ localhost GET_BY_ID 978-1-56619-909-519
 ```
 localhost GET_ALL
 ```
-#### Search books
+#### Search books in the dirrectory.
 use a part of the auther or a part of the book name to search.
 ```
 localhost SEARCH life
